@@ -1,0 +1,25 @@
+class Solution {
+public:
+	//空间复杂度优先
+    int maxSubArray(vector<int>& nums) {
+        int size = nums.size();
+        if(size == 0)
+            return 0;
+        if(size == 1)
+            return nums[0];
+        int max = nums[0];
+        int left = nums[0];
+        int right = nums[0];
+        for(int i = 1; i < size; i++){
+            if(left <= 0){
+                right = nums[i];
+            }
+            else{
+                right = left + nums[i];
+            }
+            max = max > right ? max : right;
+            left = right;
+        }
+        return max;
+    }
+};
